@@ -1,5 +1,5 @@
 #include "Base/Base.h"
-
+#include "Title.h"
 void MainLoop(void) {
 	//--------------------------------------------------------------
 	//ゲーム中の動きはここに書く
@@ -84,7 +84,7 @@ void Init(void)
 	//ゲーム起動時に一度だけ呼ばれる
 	//-----------------------------------------------------
 	
-
+	ADD_RESOURCE("Title", CImage::CreateImage("Image/仮タイトル画面.png"));
 
 
 
