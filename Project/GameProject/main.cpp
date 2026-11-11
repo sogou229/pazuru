@@ -1,5 +1,7 @@
 #include "Base/Base.h"
 #include "Title.h"
+#include "Enemy.h"
+#include "Player.h"
 void MainLoop(void) {
 	//--------------------------------------------------------------
 	//ゲーム中の動きはここに書く
@@ -87,7 +89,8 @@ void Init(void)
 	ADD_RESOURCE("Title", CImage::CreateImage("Image/仮タイトル画面.png"));
 
 	new Title();
-
+	
+	ADD_RESOURCE("Enemy", CImage::CreateImage("Image/仮鬼.png"/*, Enemy::_anim_data, 128, 128*/));
 
 
 
