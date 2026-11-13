@@ -2,15 +2,15 @@
 #include "Game.h"
 
 // コンストラクタ
-Enemy::Enemy() : Base(eType_Enemy)
+Enemy::Enemy(const CVector2D&pos) : Base(eType_Enemy)
 {
     // 画像設定
     m_img = COPY_RESOURCE("Enemy", CImage);
 
-    m_img.SetCenter(200, 250);
-    m_img.SetSize(400, 400);
-    m_img.SetPos(CVector2D(1400, 700));
-
+    m_img.SetCenter(150, 150);
+    m_img.SetSize(75, 75);
+    m_img.SetPos(CVector2D(960, 540));
+    //m_img.ChangeAnimation(0);
     // 初期設定
     m_flip = false;
     m_is_ground = true;

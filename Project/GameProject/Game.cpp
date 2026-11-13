@@ -10,7 +10,7 @@ eDifficulty g_difficulty = eNormal;
 
 Game::Game() :Base(eType_Scene)
 {
-	new Enemy();
+	new Enemy(CVector2D(960, 540));
 }
 void Game::Update()
 {

@@ -1,5 +1,6 @@
 #include "Title.h"
-//#include "Game.h"
+#include "Game.h"
+#include "DifficultySelect.h"
 
 Title::Title():Base(eType_Scene)
 {
@@ -17,8 +18,7 @@ void Title::Update()
 	if (PUSH(CInput::eMouseL)) 
 	{
 		Base::KillAll();
-
-		//new Game();
+		new DifficultySelect();
 	}
 }
 void Title::Draw()
@@ -30,5 +30,6 @@ void Title::Draw()
 	m_img.SetPos(CVector2D(960, 540));
 
 	m_img.SetPos(m_pos);
-	*/m_img.Draw();
+	*/
+	m_img.Draw();
 }
