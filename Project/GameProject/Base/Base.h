@@ -12,6 +12,7 @@ enum {
     eType_Effect,
     eType_UI,
     eType_Scene,
+    eType_HpBar,
 };
 
 //d—Í‰Á‘¬“x

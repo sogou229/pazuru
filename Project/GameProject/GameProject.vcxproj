@@ -24,6 +24,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Global.h" />
+    <ClInclude Include="HpBar.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Title.h" />
   </ItemGroup>
@@ -32,6 +33,7 @@
     <ClCompile Include="DifficultySelect.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="HpBar.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Title.cpp" />
