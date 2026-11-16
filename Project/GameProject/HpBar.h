@@ -12,6 +12,8 @@ class HpBar :public Base
 	CVector2D m_pos;
 	CVector2D m_size;
 
+	CImage m_img;
+
 public:
 	HpBar(bool isEnemy, int maxHp);
 

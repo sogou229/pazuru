@@ -13,13 +13,20 @@ HpBar::HpBar(bool isEnemy, int maxHp):Base(eType_HpBar)
     // 表示位置
     if (m_isEnemy)
     {
-        // 敵HP
-        m_pos = CVector2D(1200, 30);
+        m_img.Load("Image/EnemyHp.png");
+
+        m_img.SetSize(550, 180);
+        m_img.SetCenter(275, 90);
+        m_img.SetPos(CVector2D(960, 440));
+
     }
     else
     {
-        // プレイヤーHP
-        m_pos = CVector2D(100, 30);
+        m_img.Load("Image/PlayerHp.png");
+
+        m_img.SetSize(600, 250);
+        m_img.SetCenter(300, 300);
+        m_img.SetPos(CVector2D(960, 540));
     }
 }
 
@@ -59,42 +66,5 @@ int HpBar::GetHp()
 // 描画処理
 void HpBar::Draw()
 {
-    if (m_maxHp <= 0)
-    {
-        return;
-    }
-
-    float rate = (float)m_hp / m_maxHp;
-
-    // 背景
-    Utility::DrawQuad(
-        m_pos,
-        m_size,
-        CVector4D(0, 0, 0, 1)
-    );
-
-    // HPゲージの幅
-    CVector2D gaugeSize(
-        m_size.x * rate,
-        m_size.y
-    );
-
-    CVector4D color;
-
-    if (m_isEnemy)
-    {
-        // 敵は紫
-        color = CVector4D(0.6f, 0.1f, 0.9f, 1);
-    }
-    else
-    {
-        // プレイヤーはオレンジ
-        color = CVector4D(1.0f, 0.5f, 0.0f, 1);
-    }
-
-    Utility::DrawQuad(
-        m_pos,
-        gaugeSize,
-        color
-    );
+    m_img.Draw();
 }
