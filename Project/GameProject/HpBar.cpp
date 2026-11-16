@@ -13,18 +13,18 @@ HpBar::HpBar(bool isEnemy, int maxHp):Base(eType_HpBar)
     // ï\é¶à íu
     if (m_isEnemy)
     {
-        m_img.Load("Image/EnemyHp.png");
+        //m_img.Load("Image/EnemyHp.png");
 
-        m_img.SetSize(550, 180);
+        m_img.SetSize(500, 180);
         m_img.SetCenter(275, 90);
         m_img.SetPos(CVector2D(960, 440));
 
     }
     else
     {
-        m_img.Load("Image/PlayerHp.png");
+        //m_img.Load("Image/PlayerHp.png");
 
-        m_img.SetSize(600, 250);
+        m_img.SetSize(500, 250);
         m_img.SetCenter(300, 300);
         m_img.SetPos(CVector2D(960, 540));
     }
@@ -66,5 +66,5 @@ int HpBar::GetHp()
 // ï`âÊèàóù
 void HpBar::Draw()
 {
-    m_img.Draw();
+    //m_img.Draw();
 }
