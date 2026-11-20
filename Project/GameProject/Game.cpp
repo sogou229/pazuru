@@ -13,6 +13,9 @@ eDifficulty g_difficulty = eNormal;
 
 Game::Game() :Base(eType_Scene)
 {
+	//スコア初期化
+	m_score = 0;
+
 	//盤面画像
 	m_img.Load("Image/盤面.png");
 
@@ -63,6 +66,19 @@ Game::Game() :Base(eType_Scene)
 
 void Game::Update()
 {
+	// コンボタイマー
+	if (m_combo > 0)
+	{
+		m_comboTimer -= 1.0f / DEFAULT_FPS;
+
+		// 時間切れでコンボリセット
+		if (m_comboTimer <= 0.0f)
+		{
+			m_combo = 0;
+			m_comboTimer = 0.0f;
+		}
+	}
+
 	// 落下アニメーション
 	if (m_isFalling)
 	{
@@ -167,11 +183,43 @@ void Game::Update()
 		m_isDragging = false;
 
 
-		//１個だけ選択
+		// １個だけ選択
 		if (m_selectCount == 1)
 		{
+			int erasedCount = m_tsumCount[m_startY][m_startX];
+
+			// 基本スコア100点
+			int score = 1;
+
+			// 合体サイズボーナス（2個以上の場合）
+			if (erasedCount >= 2)
+			{
+				score += erasedCount;
+			}
+
+			// ツムを消す
 			m_tsumType[m_startY][m_startX] = -1;
 			m_tsumCount[m_startY][m_startX] = 0;
+
+			// サイズ2以上のツムを消した場合だけコンボ発生
+			if (erasedCount >= 2)
+			{
+				m_combo++;
+
+				// コンボ時間をリセット
+				m_comboTimer = m_comboLimit;
+			}
+
+			// コンボに応じた倍率
+			float multiplier = 1.0f + (m_combo - 1) * 0.1f;
+
+			if (multiplier > 1.5f)
+			{
+				multiplier = 1.5f;
+			}
+
+			// スコア加算
+			AddScore((int)(score * multiplier));
 		}
 
 		//２個以上つなげた
@@ -199,6 +247,9 @@ void Game::Update()
 			m_tsumType[targetY][targetX] = m_selectType;
 			m_tsumCount[targetY][targetX] = totalTsumCount;
 
+			//実際に消したツムの数
+			int erasedCount = 0;
+
 			// ほかの選択したツムを消す
 			for (int j = 0; j < ROW; j++)
 			{
@@ -208,12 +259,20 @@ void Game::Update()
 					{
 						if (i != targetX || j != targetY)
 						{
+							erasedCount += m_tsumCount[j][i];
+
 							m_tsumType[j][i] = -1;
 							m_tsumCount[j][i] = 0;
 						}
 					}
 				}
 			}
+			char str[128];
+
+			sprintf_s(str, "合体したツムの数=%d\n", totalTsumCount);
+			OutputDebugStringA(str);
+
+			
 		}
 		//ツムの落下・補充
 		if (m_selectCount >= 1)
@@ -248,6 +307,13 @@ void Game::Draw()
 	//ツブの間隔
 	float gapX = 70.0f;
 	float gapY = 78.0f;
+
+	// コンボ表示
+	FONT_T()->Draw(100, 150, 0, 0, 0,
+		"COMBO: %d", m_combo);
+
+	// スコア表示
+	FONT_T()->Draw(100, 100, 0, 0, 0, "SCORE:%d", m_score);
 
 	for (int y = 0; y < ROW; y++)
 	{
@@ -388,4 +454,8 @@ void Game::FallAndRefill()
 	}
 
 	m_isFalling = true;
+}
+void Game::AddScore(int count)
+{
+	m_score += count * 100;
 }

@@ -5,6 +5,9 @@ class Game :public Base
 {
 	int m_cnt=0;
 
+	//スコア
+	int m_score = 0;
+
 	CImage m_桃太郎;
 	CImage m_イヌ;
 	CImage m_キジ;
@@ -41,6 +44,7 @@ class Game :public Base
 
 	//ツムのアニメーション
 	float m_tsumOffsetY[ROW][COL];
+
 public:
 	Game();
 	void Update();
@@ -50,6 +54,20 @@ public:
 
 	bool m_isFalling = false;
 	void FallAndRefill();
+
+	//スコア加算
+	void AddScore(int count);
+
+	int GetScore()const { return m_score; }
+
+	// コンボ
+	int m_combo = 0;
+
+	// コンボ継続時間
+	float m_comboTimer = 0.0f;
+
+	// コンボが続く時間（秒）
+	float m_comboLimit = 5.0f;
 };
 enum eDifficulty
 {

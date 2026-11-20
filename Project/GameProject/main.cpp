@@ -2,6 +2,9 @@
 #include "Title.h"
 #include "Enemy.h"
 #include "Player.h"
+
+
+
 void MainLoop(void) {
 	//--------------------------------------------------------------
 	//ƒQ[ƒ€’†‚Ì“®‚«‚Í‚±‚±‚É‘‚­
@@ -11,6 +14,8 @@ void MainLoop(void) {
 	Base::UpdateAll();
 	Base::CollisionAll();
 	Base::DrawAll();
+	
+	
 	
 }
 

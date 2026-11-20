@@ -23,6 +23,9 @@
     <ClInclude Include="HpBar.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="CText.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -45,6 +48,9 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="HpBar.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="CText.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
